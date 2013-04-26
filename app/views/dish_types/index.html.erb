@@ -1,0 +1,15 @@
+<h1>Hello, world</h1>
+<div id='navbar'></div>
+<div id='content'></div>
+
+<script type="text/javascript">
+	$(function (){
+		var allDishTypes = <%= @dish_types.to_json.html_safe %>;
+
+		window.DR.initialize(
+												 $('#navbar'),
+												 $('#content'),
+												 allDishTypes
+												 )
+	});
+</script>
