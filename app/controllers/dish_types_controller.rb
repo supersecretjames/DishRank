@@ -11,11 +11,20 @@ class DishTypesController < ApplicationController
 		end
 	end
 
+	def new
+		@dish_type = DishType.new
+
+		render :new
+	end
+
 	def create
 		@dish_type = DishType.new(params[:dish_type])
 
 		if @dish_type.save
-			render :json => @dish_type
+			@dish_types = DishType.all
+			@dishes = Dish.all 
+
+			render :index
 		else
 			render :json => @dish_type.errors, :status => 422
 		end

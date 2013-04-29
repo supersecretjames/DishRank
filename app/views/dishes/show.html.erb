@@ -1,0 +1,12 @@
+<h1><%= @dish.restaurant.name %>: <%= @dish.name %>, $<%= @dish.price %></h1>
+<div class="container">
+	<div id='navbar'>
+		<%= @dish.restaurant.name %><br>
+		<%= @dish.restaurant.street %><br>
+		<%= @dish.restaurant.city %>, <%= @dish.restaurant.state %><br>
+	</div>
+	<div id='content'>
+		Reviews go here.
+	</div>
+	<div id="map_canvas"></div>
+</div>

@@ -1,4 +1,9 @@
 DishRank::Application.routes.draw do
+
+  devise_for :users
+
+  root :to => 'dish_types#index'
+
   resources :restaurants do
     resources :dishes, :only => [:index, :show, :create, :destroy] do 
       resources :reviews
@@ -15,5 +20,5 @@ DishRank::Application.routes.draw do
     resources :reviews
   end
 
-  root :to => 'dish_types#index'
+  resources :dishes
 end

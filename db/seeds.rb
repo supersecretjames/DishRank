@@ -1,10 +1,21 @@
-rest1 = Restaurant.create!(:name => 'El Farolito')
-rest2 = Restaurant.create!(:name => 'Los Gallos')
-rest3 = Restaurant.create!(:name => 'Rubios')
+rest1 = Restaurant.create!(:name => 'El Farolito', 
+													 :street => '2779 Mission St.', 
+													 :city => 'San Francisco', 
+													 :state => 'CA')
 
-user1 = User.create!({:name => 'James', :email => 'james@example.com' })
-user2 = User.create!({:name => 'Peter', :email => 'peter@example.com' })
-user3 = User.create!({:name => 'Dan', :email => 'dan@example.com' })
+rest2 = Restaurant.create!(:name => 'Los Gallos', 
+													 :street => '35232 Newark Blvd', 
+													 :city => 'Newark', 
+													 :state => 'CA')
+
+rest3 = Restaurant.create!(:name => 'Rubios', 
+													 :street => '4 Embarcadero Center', 
+													 :city => 'San Francisco', 
+													 :state => 'CA')
+
+# user1 = User.create!({:name => 'James', :email => 'james@example.com' })
+# user2 = User.create!({:name => 'Peter', :email => 'peter@example.com' })
+# user3 = User.create!({:name => 'Dan', :email => 'dan@example.com' })
 
 dtype1 = DishType.create!({:name => 'Fish Taco'})
 dtype2 = DishType.create!({:name => 'Carne Asada Burrito'})
@@ -38,6 +49,24 @@ dish5 = Dish.create({:name => 'Super Fish Taco',
 											:price => 6, 
 											:restaurant_id => 3,
 											:dish_type_id => 1
+											})
+
+dish6 = Dish.create({:name => 'Regular Ceviche', 
+											:price => 6, 
+											:restaurant_id => 1,
+											:dish_type_id => 3
+											})
+
+dish7 = Dish.create({:name => 'Super Ceviche', 
+											:price => 9, 
+											:restaurant_id => 1,
+											:dish_type_id => 3
+											})
+
+dish8 = Dish.create({:name => 'Seafood Ceviche', 
+											:price => 9, 
+											:restaurant_id => 2,
+											:dish_type_id => 3
 											})
 
 Review.create({:score => 5, :user_id => 1, :dish_id => 1})

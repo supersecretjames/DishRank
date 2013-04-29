@@ -1,0 +1,5 @@
+<ul>
+	<% dish_types.each(function (dish_type) { %>
+			<li><a href="/dish_types/<%= dish_type.escape('id') %>/dishes"><%= dish_type.escape('name') %></a></li>
+	<% }); %>
+</ul>

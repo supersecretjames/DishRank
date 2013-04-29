@@ -1,0 +1,38 @@
+<h1><%= @restaurant.name %></h1>
+<div class="container">
+	<div id='navbar'>
+		<%= @restaurant.street %><br>
+		<%= @restaurant.city %>, <%= @restaurant.state %><br>
+	</div>
+	<div id='content'>
+		<ul>
+			<% @restaurant.dishes.each do |dish| %>
+			  <li><a href="/dishes/<%= dish.id %>"><%= dish.name %></a></li> 
+			  Price: $<%= dish.price %>
+			  <p>
+			<% end %>
+		</ul>
+	</div>
+	<div id="map_canvas"></div>
+
+	<script>
+  function initialize() {
+  	var lat = <%= @restaurant.latitude %>;
+  	var lng = <%= @restaurant.longitude %>;
+
+    var map_canvas = document.getElementById('map_canvas');
+    var map_options = {
+      center: new google.maps.LatLng(lat, lng),
+      zoom: 16,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    var map = new google.maps.Map(map_canvas, map_options);
+
+    var marker = new google.maps.Marker({
+  		position: new google.maps.LatLng(lat, lng),
+  		map: map
+  	});
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+<div>

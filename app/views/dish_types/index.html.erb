@@ -1,15 +1,22 @@
-<h1>Hello, world</h1>
-<div id='navbar'></div>
-<div id='content'></div>
+<h1>Dish Types</h1>
+<div class="container">
+	<div id='navbar' style='float: left;'></div>
+	<div id='content' style='float: left;'></div>
+	<div id="map_canvas"></div>
+</div>
 
 <script type="text/javascript">
 	$(function (){
-		var allDishTypes = <%= @dish_types.to_json.html_safe %>;
+		var dishTypes = <%= @dish_types.to_json.html_safe %>;
+		var dishes = <%= @dishes.to_json.html_safe %>;
+		var restaurants = <%= @restaurants.to_json.html_safe %>;
 
 		window.DR.initialize(
 												 $('#navbar'),
 												 $('#content'),
-												 allDishTypes
+												 dishTypes,
+												 dishes,
+												 restaurants
 												 )
 	});
 </script>
