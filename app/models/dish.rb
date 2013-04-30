@@ -1,6 +1,6 @@
 class Dish < ActiveRecord::Base
   attr_accessible :name, :price, :reviews, :reviews_attributes, :restaurant_id,
-  								:dish_type_id
+  								:dish_type_id, :description
 
   belongs_to :restaurant, :inverse_of => :dishes
   belongs_to :dish_type, :inverse_of => :dishes

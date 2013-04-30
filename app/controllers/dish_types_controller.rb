@@ -3,11 +3,16 @@ class DishTypesController < ApplicationController
 	respond_to :json
 
 	def index
-		@dish_types = DishType.all
-		
-		respond_to do |format|
-			format.html { render :index }
-			format.json { render :json => @dish_types }
+		if params[:dish_type]
+			@dish_type = DishType.find(params[:dish_type][:dish_type_id])
+			redirect_to dish_type_dishes_path(@dish_type, {:address => params[:address]})
+		else
+			@dish_types = DishType.all
+			
+			respond_to do |format|
+				format.html { render :index }
+				format.json { render :json => @dish_types }
+			end
 		end
 	end
 
@@ -32,7 +37,7 @@ class DishTypesController < ApplicationController
 
 	def show
 		@dish_type = DishType.find(params[:id])
-		render :json => @dish_type
+		redirect_to dish_type_dishes_path(@dish_type)
 	end
 
 	def destroy

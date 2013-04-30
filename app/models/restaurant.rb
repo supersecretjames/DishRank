@@ -9,6 +9,25 @@ class Restaurant < ActiveRecord::Base
   geocoded_by :full_address
 	after_validation :geocode
 
+  def self.filter_by_location(restaurants, address, radius=50)
+    coords = Geocoder.coordinates(address)
+    r_holder = []
+    d_holder = []
+
+    restaurants.each do |restaurant|
+      lat = restaurant.latitude
+      lng = restaurant.longitude
+      dist = Geocoder::Calculations.distance_between(coords, [lat, lng])
+      p "restaurant #{restaurant.name}"
+      p "distance from address: #{dist} miles"
+      if dist < radius
+        r_holder << restaurant
+        d_holder << dist
+      end
+    end
+    [r_holder, d_holder, coords]
+  end
+
   def full_address
   	@full_address = "#{street}, #{city}, #{state}"
   end

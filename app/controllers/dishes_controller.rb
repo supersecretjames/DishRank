@@ -5,11 +5,18 @@ class DishesController < ApplicationController
 	def index
 		@dishes = Dish.where("dish_type_id == #{params[:dish_type_id]}")
 		@restaurants = Dish.restaurant_list(@dishes)
+		@coords = @restaurants.first.latitude, @restaurants.first.longitude
 
-		respond_to do |format|
-			format.html { render :index }
-			format.json { render :json => @dishes }
+		if params[:address]
+			restaurants_distances = Restaurant.filter_by_location(
+																@restaurants, params[:address])
+
+			@restaurants = restaurants_distances[0]
+			@distances = restaurants_distances[1]
+			@coords = restaurants_distances[2]
 		end
+
+		render :index 
 	end
 
 	def show

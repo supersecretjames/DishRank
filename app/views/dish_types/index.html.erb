@@ -5,18 +5,18 @@
 	<div id="map_canvas"></div>
 </div>
 
-<script type="text/javascript">
-	$(function (){
-		var dishTypes = <%= @dish_types.to_json.html_safe %>;
-		var dishes = <%= @dishes.to_json.html_safe %>;
-		var restaurants = <%= @restaurants.to_json.html_safe %>;
+// <script type="text/javascript">
+// 	$(function (){
+// 		var dishTypes = <%= @dish_types.to_json.html_safe %>;
+// 		var dishes = <%= @dishes.to_json.html_safe %>;
+// 		var restaurants = <%= @restaurants.to_json.html_safe %>;
 
-		window.DR.initialize(
-												 $('#navbar'),
-												 $('#content'),
-												 dishTypes,
-												 dishes,
-												 restaurants
-												 )
-	});
-</script>
+// 		window.DR.initialize(
+// 												 $('#navbar'),
+// 												 $('#content'),
+// 												 dishTypes,
+// 												 dishes,
+// 												 restaurants
+// 												 )
+// 	});
+// </script>

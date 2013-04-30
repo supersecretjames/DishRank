@@ -9,10 +9,11 @@
 	</div>
 	<div id='content'>
 		<ul>
-			<% @restaurants.each do |restaurant| %>
+			<% @restaurants.each_with_index do |restaurant, index| %>
 			  <li>
 			  	<div id='restaurant<%= restaurant.id %>'>
 			  		<a href="/restaurants/<%= restaurant.id %>"><%= restaurant.name %></a>
+			  		 <%= "(#{@distances[index].round(2)} miles)" if @distances %>
 			  	</div>
 			  </li> 
 				<% @dishes.each do |dish| %>
@@ -31,11 +32,33 @@
 	  function initialize() {
 	    var map_canvas = document.getElementById('map_canvas');
 	    var map_options = {
-	      center: new google.maps.LatLng(44.5403, -78.5463),
-	      zoom: 8,
+	      center: new google.maps.LatLng(<%= @coords[0] %>, <%= @coords[1] %> ),
+	      zoom: 9,
 	      mapTypeId: google.maps.MapTypeId.ROADMAP
 	    }
 	    var map = new google.maps.Map(map_canvas, map_options);
+
+	    <% @restaurants.each do |restaurant| %>
+	    	var lat = <%= restaurant.latitude %>
+	    	var lng = <%= restaurant.longitude %>
+
+	    	var marker = new google.maps.Marker({
+  			position: new google.maps.LatLng(lat, lng),
+  			map: map,
+  			title: "<%= restaurant.name %>"
+  			});
+	    	
+	    	var infowindow = new google.maps.InfoWindow()
+	    	var content = "<%= restaurant.name %><br><%= restaurant.street %><br><%= "#{restaurant.city}, #{restaurant.state}" %>"
+
+  			google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+    			return function() {
+        		infowindow.setContent(content);
+        		infowindow.open(map,marker);
+    			};
+				})(marker,content,infowindow));  
+
+	    <% end %>
 	  }
 	  google.maps.event.addDomListener(window, 'load', initialize);
   </script>

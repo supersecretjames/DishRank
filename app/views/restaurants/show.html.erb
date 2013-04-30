@@ -8,7 +8,8 @@
 		<ul>
 			<% @restaurant.dishes.each do |dish| %>
 			  <li><a href="/dishes/<%= dish.id %>"><%= dish.name %></a></li> 
-			  Price: $<%= dish.price %>
+			  Price: $<%= dish.price %><br>
+			  <%= dish.description %>
 			  <p>
 			<% end %>
 		</ul>

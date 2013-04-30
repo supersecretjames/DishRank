@@ -24,31 +24,36 @@ dtype3 = DishType.create!({:name => 'Ceviche'})
 dish1 = Dish.create({:name => 'Regular Fish Taco', 
 											:price => 3, 
 											:restaurant_id => 1,
-											:dish_type_id => 1
+											:dish_type_id => 1,
+											:description => 'Red snapper, onions'
 											})
 
 dish2 = Dish.create({:name => 'Deluxe Fish Taco', 
 											:price => 4, 
 											:restaurant_id => 1,
-											:dish_type_id => 1
+											:dish_type_id => 1,
+											:description => 'fancy red snapper, onions, spicy sauce'
 											})
 
 dish3 = Dish.create({:name => 'Special Fish Taco', 
 											:price => 5, 
 											:restaurant_id => 2,
-											:dish_type_id => 1
+											:dish_type_id => 1,
+											:description => 'Sea bass, caviar, onions'
 											})
 
 dish4 = Dish.create({:name => 'Fish Taco', 
 											:price => 2, 
 											:restaurant_id => 3,
-											:dish_type_id => 1
+											:dish_type_id => 1,
+											:description => 'Tilapia, cilantro (booo!)'
 											})
 
 dish5 = Dish.create({:name => 'Super Fish Taco', 
 											:price => 6, 
 											:restaurant_id => 3,
-											:dish_type_id => 1
+											:dish_type_id => 1,
+											:description => 'Breaded halibut, salsa'
 											})
 
 dish6 = Dish.create({:name => 'Regular Ceviche', 

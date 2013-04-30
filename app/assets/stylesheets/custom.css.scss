@@ -1,5 +1,25 @@
 @import "bootstrap";
 
+#top-nav {
+	width: 800px;
+	height: 25px;
+}
+
+#search {
+	float: left;
+	padding-left: 70px;
+}
+
+
+#sign-in {
+	float: right;
+	padding-right: 50px;
+}
+
+#devise {
+	padding-left: 80px;
+}
+
 #map_canvas {
   width: 300px;
   height: 300px;

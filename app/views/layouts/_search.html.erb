@@ -1,0 +1,7 @@
+<div id='search'>
+	<%= form_tag restaurants_path, method: :get do %>
+		<%= collection_select(:dish_type, :dish_type_id, DishType.all, :id, :name) %>
+		<%= text_field_tag :address, params[:address] %>
+		<%= submit_tag "Search Address", name: nil %>
+	<% end %>
+</div>
