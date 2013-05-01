@@ -20,6 +20,8 @@ class DishesController < ApplicationController
 
 	def show
 		@dish = Dish.find(params[:id])
+		@reviews = Review.where("dish_id == #{@dish.id}").order("created_at DESC")
+		p "REVIEWS #{@reviews}"
 
 		render :show
 	end

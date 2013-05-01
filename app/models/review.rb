@@ -1,5 +1,5 @@
 class Review < ActiveRecord::Base
-  attr_accessible :score, :user_id, :dish_id, :photo
+  attr_accessible :score, :user_id, :dish_id, :photo, :photo_file_name
   
   belongs_to :user, :inverse_of => :reviews
   belongs_to :dish, :inverse_of => :reviews
@@ -7,5 +7,7 @@ class Review < ActiveRecord::Base
   validates :score, :user_id, :dish_id, :presence => true
 
   has_attached_file :photo, 
-  	:styles => { :medium => "300x300>", :thumb => "100x100>" }
+  	:styles => { :medium => "300x300>", :thumb => "100x100>" }, 
+  	:default_url => "/images/missing.jpeg"
+  	
 end

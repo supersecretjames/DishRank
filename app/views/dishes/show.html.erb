@@ -5,8 +5,11 @@
 		<%= @dish.restaurant.street %><br>
 		<%= @dish.restaurant.city %>, <%= @dish.restaurant.state %><br>
 	</div>
-	<div id='content'>
-		<%= link_to "Write a review.", new_restaurant_dish_review_path(params[:restaurant_id], @dish) %><br>
-		Reviews go here.
+	<div id='review-gallery'>
+		<%= link_to "Upload a picture.", new_restaurant_dish_review_path(params[:restaurant_id], @dish) %><br>
+		<% @reviews.each do |review| %>
+			<%= image_tag review.photo.url(:medium) %><br>
+			<%= "Score: #{review.score}" %><br>
+		<% end %>
 	</div>
 </div>
