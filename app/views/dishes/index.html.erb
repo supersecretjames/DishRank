@@ -18,7 +18,7 @@
 			  </li> 
 				<% @dishes.each do |dish| %>
 					<% if dish.restaurant_id == restaurant.id %>
-						<div><a href='/dishes/<%= dish.id %>'><%= dish.name %></a>, $<%= dish.price %></div>
+						<div><a href='/restaurants/<%= restaurant.id %>/dishes/<%= dish.id %>'><%= dish.name %></a>, $<%= dish.price %></div>
 					<% end %>
 				<% end %>
 				<br>

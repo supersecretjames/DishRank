@@ -5,20 +5,16 @@ DishRank::Application.routes.draw do
   root :to => 'dish_types#index'
 
   resources :restaurants do
-    resources :dishes, :only => [:index, :show, :create, :destroy] do 
+    resources :dishes do
       resources :reviews
     end
   end
 
   resources :dish_types do 
-    resources :dishes, :only => [:index, :show] do
-      resources :reviews
-    end
+    resources :dishes, :only => [:index]
   end
 
-  resources :users do
-    resources :reviews
-  end
+  resources :users
 
   resources :dishes
 end

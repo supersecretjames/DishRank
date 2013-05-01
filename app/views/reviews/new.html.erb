@@ -6,7 +6,13 @@
 		<%= @dish.restaurant.city %>, <%= @dish.restaurant.state %><br>
 	</div>
 	<div id='content'>
-		<%= link_to "Write a review.", new_restaurant_dish_review_path(params[:restaurant_id], @dish) %><br>
-		Reviews go here.
+		<%= form_for([:restaurant, :dish, @review]) do |f| %>
+			<%= f.label :score %>
+			<%= f.number_field :score %><br>
+			<%= f.file_field :photo %><br>
+			<%= f.submit %>
+		<% end %>
 	</div>
 </div>
+
+

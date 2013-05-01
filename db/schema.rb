@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130430183230) do
+ActiveRecord::Schema.define(:version => 20130430233129) do
 
   create_table "dish_types", :force => true do |t|
     t.string   "name"
@@ -47,8 +47,12 @@ ActiveRecord::Schema.define(:version => 20130430183230) do
     t.integer  "score"
     t.integer  "user_id"
     t.integer  "dish_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "reviews", ["dish_id"], :name => "index_reviews_on_dish_id"

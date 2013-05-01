@@ -7,7 +7,7 @@
 	<div id='content'>
 		<ul>
 			<% @restaurant.dishes.each do |dish| %>
-			  <li><a href="/dishes/<%= dish.id %>"><%= dish.name %></a></li> 
+			  <li><a href="/restaurants/<%= @restaurant.id %>/dishes/<%= dish.id %>"><%= dish.name %></a></li> 
 			  Price: $<%= dish.price %><br>
 			  <%= dish.description %>
 			  <p>
