@@ -1,10 +1,9 @@
 class DishesController < ApplicationController
-	respond_to :json
-	respond_to :html
 
 	def index
 		@dishes = Dish.where("dish_type_id == #{params[:dish_type_id]}")
 		@restaurants = Dish.restaurant_list(@dishes)
+
 		@coords = @restaurants.first.latitude, @restaurants.first.longitude
 
 		if params[:address] && !params[:address].empty?
@@ -18,10 +17,29 @@ class DishesController < ApplicationController
 		render :index 
 	end
 
+	def new
+		@dish = Dish.new
+
+		render :new
+	end
+
+	def create 
+		@dish = Dish.new(params[:dish])
+		@dish.restaurant_id = params[:restaurant][:restaurant_id]
+		@dish.dish_type_id = params[:dish_type][:dish_type_id]
+
+		if @dish.save
+			flash[:success] = "Dish saved!"
+
+			redirect_to restaurant_dish_path(@dish.restaurant_id, @dish)
+		else
+			render :new
+		end
+	end
+
 	def show
 		@dish = Dish.find(params[:id])
 		@reviews = Review.where("dish_id == #{@dish.id}").order("created_at DESC")
-		p "REVIEWS #{@reviews}"
 
 		render :show
 	end

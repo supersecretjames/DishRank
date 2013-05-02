@@ -7,7 +7,7 @@ gem 'bootstrap-sass', '2.1'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-
+#gem "twitter-bootstrap-rails", "~> 2.2.6"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -27,6 +27,7 @@ gem 'ejs'
 gem 'geocoder'
 gem 'devise'
 gem "paperclip", "~> 3.0"
+gem 'jquery-star-rating-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

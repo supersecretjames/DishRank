@@ -6,26 +6,27 @@ class Restaurant < ActiveRecord::Base
   has_many :dish_types, :through => :dishes
   accepts_nested_attributes_for :dishes 
 
+  validates :name, :street, :state, :city, :presence => true
+
   geocoded_by :full_address
 	after_validation :geocode
 
-  def self.filter_by_location(restaurants, address, radius=50)
+  def self.filter_by_location(restaurants, address, radius=25)
     coords = Geocoder.coordinates(address)
-    r_holder = []
-    d_holder = []
+    restaurants_holder = []
+    distances_holder = []
 
     restaurants.each do |restaurant|
       lat = restaurant.latitude
       lng = restaurant.longitude
       dist = Geocoder::Calculations.distance_between(coords, [lat, lng])
-      p "restaurant #{restaurant.name}"
-      p "distance from address: #{dist} miles"
+
       if dist < radius
-        r_holder << restaurant
-        d_holder << dist
+        restaurants_holder << restaurant
+        distances_holder << dist
       end
     end
-    [r_holder, d_holder, coords]
+    [restaurants_holder, distances_holder, coords]
   end
 
   def full_address

@@ -8,7 +8,7 @@ class Dish < ActiveRecord::Base
   accepts_nested_attributes_for :reviews
 
   validates :name, :price, :presence => true
-  validates_presence_of :restaurant
+  validates_presence_of :restaurant_id
   
 
   def self.restaurant_list(dishes)
@@ -21,6 +21,14 @@ class Dish < ActiveRecord::Base
   	r_ids.map do |id|
   		Restaurant.find_by_id(id)
   	end
+  end
+
+  def average_rating
+    Review.review_average(self) 
+  end
+
+  def total_review_count
+    Review.review_count(self)
   end
 
 end

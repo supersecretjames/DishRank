@@ -1,0 +1,6 @@
+<% if dish.reviews.length > 0 %>
+	<% reviews = dish.reviews[0..3] %>
+	<% dish.reviews.each do |review| %>
+		<a href="/restaurants/<%= dish.restaurant.id %>/dishes/<%= dish.id %>"><%= image_tag review.photo.url(:thumb) %></a>
+	<% end %>
+<% end %>

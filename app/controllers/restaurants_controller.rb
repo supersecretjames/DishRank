@@ -1,32 +1,25 @@
 class RestaurantsController < ApplicationController
-	respond_to :html
-	respond_to :json
+	
+	before_filter :check_login, :only => [:new, :create, :edit, :save]
 	
 	def index
-		@restaurants = Restaurant.all 
-		@dishes = Dish.all
-
-		respond_to do |format|
-			format.html { render :index }
-			format.json { render :json => @restaurants }
-		end
+		render :index
 	end
 
-	# def new
-	# 	@restaurant = Restaurant.new
+	def new
+		@restaurant = Restaurant.new
 
-	# 	render :new
-	# end
+		render :new
+	end
 
 	def create
 		@restaurant = Restaurant.new(params[:restaurant])
 
-		#look up lat and long and set the db
-
 		if @restaurant.save
-			render :json => @restaurant
+			flash[:success] = "Restaurant Created!"
+			render restaurant_path(@restaurant)
 		else
-			render :json => @restaurant.errors, :status => 422
+			render :new
 		end
 	end
 

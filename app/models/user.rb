@@ -9,4 +9,5 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, 
   	:remember_me, :address
   # attr_accessible :title, :body
+  has_many :reviews
 end

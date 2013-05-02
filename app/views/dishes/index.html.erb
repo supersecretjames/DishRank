@@ -1,9 +1,14 @@
-<h1>Dish Finder</h1>
+
 <div class="container">
+	<div id='head'>
+		<h1>Dish Finder</h1>
+	</div>
 	<div id='navbar'>
 		<ul>
 			<% DishType.all.each do |dish_type| %>
-				<li><a href="/dish_types/<%= dish_type.id %>/dishes"><%= dish_type.name %></a></li>
+				<% if !dish_type.restaurants.empty? %>
+					<li><a href="/dish_types/<%= dish_type.id %>/dishes"><%= dish_type.name %></a></li>
+				<% end %>
 			<% end %>
 		</ul>
 	</div>
@@ -18,10 +23,12 @@
 			  </li> 
 				<% @dishes.each do |dish| %>
 					<% if dish.restaurant_id == restaurant.id %>
-						<div><a href='/restaurants/<%= restaurant.id %>/dishes/<%= dish.id %>'><%= dish.name %></a>, $<%= dish.price %></div>
+						<div id='restaurant-dishes'><a href='/restaurants/<%= restaurant.id %>/dishes/<%= dish.id %>'><%= dish.name %></a>, $<%= dish.price %><p>
+							<%= render :partial => "dish_gallery", :locals => {:dish => dish} %>
+						<%= stars_and_count(dish) %>
+					</div>
 					<% end %>
 				<% end %>
-				<br>
 			<% end %>
 		</ul>
 	</div>
@@ -49,12 +56,18 @@
   			});
 	    	
 	    	var infowindow = new google.maps.InfoWindow()
-	    	var content = "<%= restaurant.name %><br><%= restaurant.street %><br><%= "#{restaurant.city}, #{restaurant.state}" %>"
+	    	var content = "<b><%= restaurant.name %></b><br><%= restaurant.street %><br><%= "#{restaurant.city}, #{restaurant.state}" %>"
 
-  			google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+  			google.maps.event.addListener(marker,'mouseover', (function(marker,content,infowindow){ 
     			return function() {
         		infowindow.setContent(content);
         		infowindow.open(map,marker);
+    			};
+				})(marker,content,infowindow));  
+
+				google.maps.event.addListener(marker,'mouseout', (function(marker,content,infowindow){ 
+    			return function() {
+        		infowindow.close();
     			};
 				})(marker,content,infowindow));  
 

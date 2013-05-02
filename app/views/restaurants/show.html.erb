@@ -1,15 +1,20 @@
-<h1><%= @restaurant.name %></h1>
+
 <div class="container">
+	<div id='head'>
+		<h1><%= @restaurant.name %></h1>
+	</div>
 	<div id='navbar'>
-		<%= @restaurant.street %><br>
-		<%= @restaurant.city %>, <%= @restaurant.state %><br>
+		<%= address(@restaurant) %>
+		<%= link_to "Add a dish.", new_restaurant_dish_path(@restaurant) %>
 	</div>
 	<div id='content'>
 		<ul>
 			<% @restaurant.dishes.each do |dish| %>
 			  <li><a href="/restaurants/<%= @restaurant.id %>/dishes/<%= dish.id %>"><%= dish.name %></a></li> 
-			  Price: $<%= dish.price %><br>
-			  <%= dish.description %>
+			  <%= average_stars_for(dish) %>
+				(<%= dish.total_review_count %> total reviews)<br>
+			  <%= dish.description %><br>
+			  Price: $<%= dish.price %>
 			  <p>
 			<% end %>
 		</ul>

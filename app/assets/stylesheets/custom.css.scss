@@ -1,24 +1,51 @@
 @import "bootstrap";
 
-#review-gallery {
-	width: 650px;
+.container {
+	width: 950px;
+}
+
+
+.rating_bar {
+  width: 80px;
+  background: url(/images/star.gif) 0 0 repeat-x;
+}
+
+#star {
+  height: 16px;
+  background: url(/images/star.gif) 0 -32px repeat-x;
+}
+
+#head {
+	width: 950px;
+	height: 50px;
+	padding: 20px;
+}
+
+#restaurant-dishes {
+	padding-left: 15px;
+	padding-bottom: 10px;
+}
+
+#reviews {
+	width: 620px;
 	float: left;
 }
 
 #top-nav {
-	width: 800px;
+	width: 950px;
 	height: 25px;
 }
 
 #search {
-	float: left;
-	padding-left: 70px;
+	height: 25px;
+	padding-left: 20px;
 }
 
-
 #sign-in {
-	float: right;
-	padding-right: 50px;
+	width: 950px;
+	height: 20px;
+	padding-left: 585px;
+	padding-bottom: 25px;
 }
 
 #devise {
@@ -26,21 +53,28 @@
 }
 
 #map_canvas {
-  width: 300px;
-  height: 300px;
-  float: left;
+  width: 350px;
+  height: 350px;
+  float: right;
   background-color: #CCC;
 }
 
 #navbar {
 	float: left;
+	width: 180px;
+	height: 2000px;
 }
 
 #content {
 	float: left;
-	width: 350px;
-	padding-left: 20px;
-	padding-right: 20px;
+	width: 400px;
+	height: 2000px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.address {
+	text-align: right;
 }
 
 ul {
@@ -52,7 +86,7 @@ html {
 }
 
 body {
-  padding-top: 60px;
+  padding-top: 20px;
 }
 
 section {

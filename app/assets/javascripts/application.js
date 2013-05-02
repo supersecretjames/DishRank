@@ -18,6 +18,7 @@
 //= require backbone-relational
 //= require backbone-forms
 //= require dr
+//= require jquery-star-rating
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./views

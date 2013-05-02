@@ -1,15 +1,31 @@
-<h1><%= @dish.restaurant.name %>: <%= @dish.name %>, $<%= @dish.price %></h1>
 <div class="container">
-	<div id='navbar'>
-		<%= link_to @dish.restaurant.name, restaurant_path(@dish.restaurant) %><br>
-		<%= @dish.restaurant.street %><br>
-		<%= @dish.restaurant.city %>, <%= @dish.restaurant.state %><br>
+	<div id='head'>
+		<h1><%= @dish.restaurant.name %></h1>
 	</div>
-	<div id='review-gallery'>
-		<%= link_to "Upload a picture.", new_restaurant_dish_review_path(params[:restaurant_id], @dish) %><br>
+	<div id='navbar'>
+		<b><%= @dish.name %></b>
+		<br> 
+		(<i>Dish Type: <%= link_to @dish.dish_type.name, dish_type_path(@dish.dish_type) %></i>)
+		<br>
+
+		Price: $<%= @dish.price %><br>
+		<%= @dish.description %>
+		<p>
+
+		<%= average_stars_for(@dish) %>
+		Avg. Score: <%= @dish.average_rating %><br>
+		(<%= @dish.total_review_count %> total reviews)
+		<p><p>
+
+		<%= link_to "Write a review.", new_restaurant_dish_review_path(params[:restaurant_id], @dish) %>
+		<br>
+	</div>
+	<div id='reviews'>
 		<% @reviews.each do |review| %>
-			<%= image_tag review.photo.url(:medium) %><br>
-			<%= "Score: #{review.score}" %><br>
+			<%= link_to review.user.name, user_path(review.user)%> says:
+			<%= stars_for(review) %>
+			<%= image_tag review.photo.url(:medium) %>
+			<br>
 		<% end %>
 	</div>
 </div>

@@ -75,20 +75,20 @@ dish8 = Dish.create({:name => 'Seafood Ceviche',
 											})
 
 Review.create({:score => 5, :user_id => 1, :dish_id => 1})
-Review.create({:score => 8, :user_id => 1, :dish_id => 2})
-Review.create({:score => 10, :user_id => 1, :dish_id => 3})
-Review.create({:score => 7, :user_id => 1, :dish_id => 4})
-Review.create({:score => 5, :user_id => 1, :dish_id => 5})
+Review.create({:score => 4, :user_id => 1, :dish_id => 2})
+Review.create({:score => 5, :user_id => 1, :dish_id => 3})
+Review.create({:score => 3, :user_id => 1, :dish_id => 4})
+Review.create({:score => 2, :user_id => 1, :dish_id => 5})
 
-Review.create({:score => 6, :user_id => 2, :dish_id => 1})
-Review.create({:score => 9, :user_id => 2, :dish_id => 3})
-Review.create({:score => 2, :user_id => 2, :dish_id => 4})
-Review.create({:score => 6, :user_id => 2, :dish_id => 5})
+Review.create({:score => 4, :user_id => 2, :dish_id => 1})
+Review.create({:score => 3, :user_id => 2, :dish_id => 3})
+Review.create({:score => 1, :user_id => 2, :dish_id => 4})
+Review.create({:score => 3, :user_id => 2, :dish_id => 5})
 
-Review.create({:score => 4, :user_id => 3, :dish_id => 2})
-Review.create({:score => 7, :user_id => 3, :dish_id => 3})
-Review.create({:score => 5, :user_id => 3, :dish_id => 4})
-Review.create({:score => 9, :user_id => 3, :dish_id => 5})
+Review.create({:score => 2, :user_id => 3, :dish_id => 2})
+Review.create({:score => 3, :user_id => 3, :dish_id => 3})
+Review.create({:score => 2, :user_id => 3, :dish_id => 4})
+Review.create({:score => 4, :user_id => 3, :dish_id => 5})
 
 
 
