@@ -5,4 +5,7 @@ class DishType < ActiveRecord::Base
   has_many :restaurants, :through => :dishes
   validates :name, :presence => true
   validates :name, :uniqueness => true
+
+  def dish_type_id
+  end
 end

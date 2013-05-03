@@ -27,11 +27,14 @@
 			<i>Be the first. Make a difference!</i>
 		<% end %>
 		<% @reviews.each do |review| %>
-			<%= image_tag review.user.profile_photo.url(:show) %>
+			<hr>
+			<%= image_tag review.user.profile_photo.url(:small), class: 'thin_border' %>
 			<%= link_to review.user.name, user_path(review.user) %> says:
+			<%= review.body %>
+			<p>
 			<%= stars_for(review) %>
-			<%= image_tag review.photo.url(:medium) %>
-			<br>
+			<%= image_tag review.photo.url(:medium), class: 'thin_border' %>
+			<p><p>
 		<% end %>
 	</div>
 </div>

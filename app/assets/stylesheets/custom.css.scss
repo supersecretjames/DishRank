@@ -4,6 +4,10 @@
 	width: 950px;
 }
 
+.thin_border {
+  border: thin solid black;  
+}
+
 .map_border {
   border: thin solid black;  
 }
@@ -13,6 +17,7 @@
     padding: 1px;
     border: thin solid black;
 } 
+
 
 .rating_bar {
   width: 80px;
@@ -36,7 +41,7 @@
 }
 
 #reviews {
-	width: 620px;
+	width: 300px;
 	float: left;
 }
 

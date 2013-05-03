@@ -17,7 +17,7 @@ class RestaurantsController < ApplicationController
 
 		if @restaurant.save
 			flash[:success] = "Restaurant Created!"
-			render restaurant_path(@restaurant)
+			redirect_to restaurant_path(@restaurant)
 		else
 			render :new
 		end
