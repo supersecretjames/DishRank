@@ -13,7 +13,7 @@
 			<hr>
 
 		<%= form_for([:restaurant, :dish, @review]) do |f| %>
-			<h4>Rating</h4>
+			<h4>Review</h4>
 			<input class="star required" type="radio" name="review[score]" value="1"/>
 			<input class="star" type="radio" name="review[score]" value="2"/>
 			<input class="star" type="radio" name="review[score]" value="3"/>
@@ -21,7 +21,10 @@
 			<input class="star" type="radio" name="review[score]" value="5"/>
 			<%= ("&nbsp" * 10).html_safe %> 
 			<i>Roll over stars. Then click to rate.</i>
-			<p>
+			<p><p>
+
+			<%= f.text_field :body %><br>
+
 
 			<h4>Upload Photo</h4>
 			<%= f.file_field :photo %><br>
