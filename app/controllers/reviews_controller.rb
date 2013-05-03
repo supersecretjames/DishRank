@@ -42,6 +42,15 @@ class ReviewsController < ApplicationController
 	end
 
 	def destroy
+		@review = Review.find(params[:id])
+
+		if @review.destroy
+			flash[:success] = "Your review has been banished."
+			redirect_to root_url
+		else
+			flash[:failure] = "Your delete attempt has failed. The review is resilient."
+			redirect_to root_url
+		end
 	end
 
 end

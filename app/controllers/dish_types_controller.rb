@@ -1,6 +1,4 @@
 class DishTypesController < ApplicationController
-	respond_to :html
-	respond_to :json
 
 	def index
 		if params[:dish_type]
@@ -9,10 +7,7 @@ class DishTypesController < ApplicationController
 		else
 			@dish_types = DishType.all
 			
-			respond_to do |format|
-				format.html { render :index }
-				format.json { render :json => @dish_types }
-			end
+			render :index
 		end
 	end
 
@@ -31,7 +26,7 @@ class DishTypesController < ApplicationController
 
 			render :index
 		else
-			render :json => @dish_type.errors, :status => 422
+			render :new
 		end
 	end
 

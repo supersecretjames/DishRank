@@ -11,6 +11,7 @@
 				<% end %>
 			<% end %>
 		</ul>
+		<%= link_to "Add a Dish Type", new_dish_type_url %>
 	</div>
 	<div id='content'>
 		<ul>
@@ -33,14 +34,14 @@
 		</ul>
 	</div>
 
-	<div id="map_canvas"></div>
+	<div id="map_canvas" class="map_border"></div>
 	
 	<script>
 	  function initialize() {
 	    var map_canvas = document.getElementById('map_canvas');
 	    var map_options = {
 	      center: new google.maps.LatLng(<%= @coords[0] %>, <%= @coords[1] %> ),
-	      zoom: 9,
+	      zoom: 12,
 	      mapTypeId: google.maps.MapTypeId.ROADMAP
 	    }
 	    var map = new google.maps.Map(map_canvas, map_options);

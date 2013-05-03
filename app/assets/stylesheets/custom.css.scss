@@ -4,6 +4,15 @@
 	width: 950px;
 }
 
+.map_border {
+  border: thin solid black;  
+}
+
+.image_border
+{ 
+    padding: 1px;
+    border: thin solid black;
+} 
 
 .rating_bar {
   width: 80px;
@@ -53,8 +62,8 @@
 }
 
 #map_canvas {
-  width: 350px;
-  height: 350px;
+  width: 348px;
+  height: 500px;
   float: right;
   background-color: #CCC;
 }

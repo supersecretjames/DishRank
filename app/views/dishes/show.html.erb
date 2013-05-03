@@ -21,8 +21,14 @@
 		<br>
 	</div>
 	<div id='reviews'>
+		<% if @reviews.empty? %> 
+			<h3>No Reviews Yet</h3>
+			<%= link_to "Write a review.", new_restaurant_dish_review_path(params[:restaurant_id], @dish) %>
+			<i>Be the first. Make a difference!</i>
+		<% end %>
 		<% @reviews.each do |review| %>
-			<%= link_to review.user.name, user_path(review.user)%> says:
+			<%= image_tag review.user.profile_photo.url(:show) %>
+			<%= link_to review.user.name, user_path(review.user) %> says:
 			<%= stars_for(review) %>
 			<%= image_tag review.photo.url(:medium) %>
 			<br>

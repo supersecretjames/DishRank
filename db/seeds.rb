@@ -74,6 +74,18 @@ dish8 = Dish.create({:name => 'Seafood Ceviche',
 											:dish_type_id => 3
 											})
 
+dish9 = Dish.create({:name => 'Regular Carne Asada Burrito', 
+											:price => 6, 
+											:restaurant_id => 1,
+											:dish_type_id => 2
+											})
+
+dish10 = Dish.create({:name => 'Deluxe Carne Asada Burrito', 
+											:price => 8, 
+											:restaurant_id => 1,
+											:dish_type_id => 2
+											})
+
 Review.create({:score => 5, :user_id => 1, :dish_id => 1})
 Review.create({:score => 4, :user_id => 1, :dish_id => 2})
 Review.create({:score => 5, :user_id => 1, :dish_id => 3})
@@ -89,8 +101,8 @@ Review.create({:score => 2, :user_id => 3, :dish_id => 2})
 Review.create({:score => 3, :user_id => 3, :dish_id => 3})
 Review.create({:score => 2, :user_id => 3, :dish_id => 4})
 Review.create({:score => 4, :user_id => 3, :dish_id => 5})
-
-
+Review.create({:score => 5, :user_id => 1, :dish_id => 9})
+Review.create({:score => 5, :user_id => 2, :dish_id => 8})
 
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).

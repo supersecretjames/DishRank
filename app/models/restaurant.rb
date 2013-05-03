@@ -1,6 +1,6 @@
 class Restaurant < ActiveRecord::Base
   attr_accessible :name, :street, :state, :city, :lat, :lng, :dishes, 
-  	:dishes_attributes
+  	:dishes_attributes, :photo
 
   has_many :dishes, :inverse_of => :restaurant
   has_many :dish_types, :through => :dishes
@@ -10,6 +10,12 @@ class Restaurant < ActiveRecord::Base
 
   geocoded_by :full_address
 	after_validation :geocode
+
+  has_attached_file :photo, :styles => {
+    :large => "600x600>",
+    :thumb => "100x100#",
+    :tiny => "25x25#"
+  }, :default_url => "/images/missing_rest.jpeg"
 
   def self.filter_by_location(restaurants, address, radius=25)
     coords = Geocoder.coordinates(address)

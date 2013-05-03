@@ -4,22 +4,23 @@
 		<h1><%= @restaurant.name %></h1>
 	</div>
 	<div id='navbar'>
+		<%= image_tag @restaurant.photo.url(:thumb), class: 'image_border' %><br>
 		<%= address(@restaurant) %>
 		<%= link_to "Add a dish.", new_restaurant_dish_path(@restaurant) %>
 	</div>
 	<div id='content'>
 		<ul>
 			<% @restaurant.dishes.each do |dish| %>
-			  <li><a href="/restaurants/<%= @restaurant.id %>/dishes/<%= dish.id %>"><%= dish.name %></a></li> 
+			  <li><a href="/restaurants/<%= @restaurant.id %>/dishes/<%= dish.id %>"><%= dish.name %></a>, Price: $<%= dish.price %></li> 
+			  <%= render :partial => "dishes/dish_gallery", :locals => {:dish => dish} %>
 			  <%= average_stars_for(dish) %>
 				(<%= dish.total_review_count %> total reviews)<br>
 			  <%= dish.description %><br>
-			  Price: $<%= dish.price %>
 			  <p>
 			<% end %>
 		</ul>
 	</div>
-	<div id="map_canvas"></div>
+	<div id="map_canvas" class="map_border"></div>
 
 	<script>
   function initialize() {
