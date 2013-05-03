@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
 	before_filter :check_login, :only => [:new, :create, :edit, :save]
 
 	def index
-		@reviews = Review.where("dish_id == #{params[:dish_id]}")
+		@reviews = Review.where("dish_id = ?", params[:dish_id])
 
 		render :index
 	end

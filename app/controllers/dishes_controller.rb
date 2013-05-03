@@ -3,7 +3,7 @@ class DishesController < ApplicationController
 	before_filter :check_login, :only => [:new, :create, :edit, :save]
 
 	def index
-		@dishes = Dish.where("dish_type_id == #{params[:dish_type_id]}")
+		@dishes = Dish.where("dish_type_id = ?", params[:dish_type_id])
 		@restaurants = Dish.restaurant_list(@dishes)
 
 		@coords = @restaurants.first.latitude, @restaurants.first.longitude
@@ -41,7 +41,7 @@ class DishesController < ApplicationController
 
 	def show
 		@dish = Dish.find(params[:id])
-		@reviews = Review.where("dish_id == #{@dish.id}").order("created_at DESC")
+		@reviews = Review.where("dish_id = ?", @dish.id).order("created_at DESC")
 
 		render :show
 	end

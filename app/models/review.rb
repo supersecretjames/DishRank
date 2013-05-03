@@ -11,10 +11,10 @@ class Review < ActiveRecord::Base
   	:default_url => "/images/missing.jpeg"
   	
   def self.review_average(dish)
-  	Review.where("dish_id == #{dish.id}").average("score").to_f.round(2)
+  	Review.where("dish_id = ?", dish.id).average("score").to_f.round(2)
   end
 
   def self.review_count(dish)
-    Review.where("dish_id == #{dish.id}").count
+    Review.where("dish_id = ?", dish.id).count
   end
 end
