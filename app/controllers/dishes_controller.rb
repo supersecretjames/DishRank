@@ -1,5 +1,7 @@
 class DishesController < ApplicationController
 
+	before_filter :check_login, :only => [:new, :create, :edit, :save]
+
 	def index
 		@dishes = Dish.where("dish_type_id == #{params[:dish_type_id]}")
 		@restaurants = Dish.restaurant_list(@dishes)
