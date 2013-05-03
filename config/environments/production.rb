@@ -68,9 +68,9 @@ DishRank::Application.configure do
   config.paperclip_defaults = {
   :storage => :s3,
   :s3_credentials => {
-    :bucket => dishrank-production,
-    :access_key_id => AKIAIFCDOHVFTQ57QCSA,
-    :secret_access_key => 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
+    :bucket => ENV['AWS_BUCKET'],
+    :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+    :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
   }
 }
 end
