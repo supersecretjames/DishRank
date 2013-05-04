@@ -15,5 +15,7 @@ class User < ActiveRecord::Base
     :large => "600x600>",
     :medium => "300x300#",
     :small => "45x45#"
-  }, :default_url => "/images/missing_profile.jpeg"
+  }, 
+  :default_url => "/images/missing_profile.jpeg",
+  :path => ":class/photos/:id/:style.:extension"
 end

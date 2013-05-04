@@ -15,7 +15,9 @@ class Restaurant < ActiveRecord::Base
     :large => "600x600>",
     :thumb => "100x100#",
     :tiny => "25x25#"
-  }, :default_url => "/images/missing_rest.jpeg"
+  }, 
+  :default_url => "/images/missing_rest.jpeg",
+  :path => ":class/photos/:id/:style.:extension"
 
   def self.filter_by_location(restaurants, address, radius=25)
     coords = Geocoder.coordinates(address)
