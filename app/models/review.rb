@@ -9,7 +9,8 @@ class Review < ActiveRecord::Base
 
   has_attached_file :photo, 
   	:styles => { :medium => "300x300#", :thumb => "100x100#" }, 
-  	:default_url => "/images/missing.jpeg"
+  	:default_url => "/images/missing.jpeg",
+    :path => "reviews/:class/:id.:style.:extension"
   	
   def self.review_average(dish)
   	Review.where("dish_id = ?", dish.id).average("score").to_f.round(2)
