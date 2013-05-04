@@ -15,4 +15,4 @@
 /tmp
 .DS_Store
 
-config/environments/development.rb
+/config/initializers/env.rb
