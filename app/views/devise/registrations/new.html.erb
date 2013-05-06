@@ -10,15 +10,16 @@
 		  <div><%= f.label :email %>
 		  <%= f.email_field :email %></div>
 
-
 		  <div><%= f.label "Upload a photo" %>
 		  	<%= f.file_field :profile_photo %></div><br>
 
-		  <div><%= f.label :password %>
-		  <%= f.password_field :password %></div>
+		  <% if f.object.password_required? %>
+		  	<div><%= f.label :password %>
+		  	<%= f.password_field :password %></div>
 
-		  <div><%= f.label :password_confirmation %>
-		  <%= f.password_field :password_confirmation %></div>
+		  	<div><%= f.label :password_confirmation %>
+		  	<%= f.password_field :password_confirmation %></div>
+		  <% end %>
 
 		  <div><%= f.submit "Sign up" %></div>
 		<% end %>

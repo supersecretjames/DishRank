@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130503180008) do
+ActiveRecord::Schema.define(:version => 20130506030512) do
 
   create_table "dish_types", :force => true do |t|
     t.string   "name"
@@ -82,6 +82,8 @@ ActiveRecord::Schema.define(:version => 20130503180008) do
     t.string   "profile_photo_content_type"
     t.integer  "profile_photo_file_size"
     t.datetime "profile_photo_updated_at"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -1,6 +1,9 @@
 DishRank::Application.routes.draw do
+  # match 'auth/:provider/callback', to: 'sessions#create'
+  # match 'auth/failure', to: redirect('/')
+  # match 'signout', to: 'session#destroy', as: 'signout'
 
-  devise_for :users
+  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
   root :to => 'dish_types#index'
 

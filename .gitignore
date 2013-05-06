@@ -16,5 +16,6 @@
 .DS_Store
 
 /config/initializers/env.rb
+/config/initializers/a_env.rb
 /users/photos
 
