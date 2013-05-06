@@ -11,13 +11,19 @@ class Restaurant < ActiveRecord::Base
   geocoded_by :full_address
 	after_validation :geocode
 
-  has_attached_file :photo, :styles => {
+  PAPERCLIP_OPTIONS = {:styles => {
     :large => "600x600>",
     :thumb => "100x100#",
     :tiny => "25x25#"
   }, 
-  :default_url => "/images/missing_rest.jpeg",
-  :path => ":class/photos/:id/:style.:extension"
+  :default_url => "/images/missing_rest.jpeg"}
+
+  if Rails.env.production?
+    has_attached_file(:photo, {:path => 
+      ":class/photos/:id/:style.:extension"}.merge(PAPERCLIP_OPTIONS))
+  else
+    has_attached_file(:photo, PAPERCLIP_OPTIONS) 
+  end
 
   def self.filter_by_location(restaurants, address, radius=25)
     coords = Geocoder.coordinates(address)
