@@ -4,6 +4,7 @@ class DishesController < ApplicationController
 
 	def index
 		@dishes = Dish.where("dish_type_id = ?", params[:dish_type_id])
+
 		@restaurants = Dish.restaurant_list(@dishes)
 
 		@coords = @restaurants.first.latitude, @restaurants.first.longitude
@@ -15,6 +16,8 @@ class DishesController < ApplicationController
 			@distances = restaurants_distances[1]
 			@coords = restaurants_distances[2]
 		end
+		@restaurants = 
+			Kaminari.paginate_array(@restaurants).page(params[:page]).per(10)
 
 		render :index 
 	end
@@ -42,6 +45,8 @@ class DishesController < ApplicationController
 	def show
 		@dish = Dish.find(params[:id])
 		@reviews = Review.where("dish_id = ?", @dish.id).order("created_at DESC")
+		@reviews = 
+			Kaminari.paginate_array(@reviews).page(params[:page]).per(10)
 
 		render :show
 	end
