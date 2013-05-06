@@ -8,7 +8,7 @@ class Review < ActiveRecord::Base
   validates :score, :user_id, :dish_id, :presence => true
 
   has_attached_file :photo, 
-  	:styles => { :medium => "300x300#", :thumb => "100x100#" }, 
+  	:styles => { :medium => "300x300#", :thumb => "80x80#" }, 
   	:default_url => "/images/missing.jpeg",
     :path => ":class/photos/:id/:style.:extension"
   	

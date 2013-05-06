@@ -36,6 +36,8 @@ gem "paperclip", "~> 3.0"
 gem 'jquery-star-rating-rails'
 gem 'aws-sdk'
 gem 'omniauth-facebook'
+gem "koala", "~> 1.6.0"
+gem 'kaminari'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
