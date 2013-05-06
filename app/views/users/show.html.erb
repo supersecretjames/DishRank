@@ -1,7 +1,20 @@
 <div class="container">
 	<div id='navbar'>
 	</div>
-	<div id='content'>
+	<div id='reviews'>
+		<div id='reviews'>
+			<% if @reviews.empty? %> 
+				<h3>No Reviews Yet</h3>
+			<% end %>
+			<% @reviews.each do |review| %>
+				<%= image_tag review.photo.url(:medium), class: 'thin_border' %><p><p>
+				<%= link_to review.user.name, user_path(review.user) %> says:
+				<%= review.body unless !review.body %>
+				<%= stars_for(review) %>
+				<p>
+				<hr>
+			<% end %>
+			<%= paginate @reviews %>
+		</div>
 	</div>
-	
 </div>

@@ -10,13 +10,19 @@ class User < ActiveRecord::Base
 
   has_many :reviews
 
-  has_attached_file :profile_photo, :styles => {
-    :large => "600x600>",
-    :medium => "300x300#",
-    :small => "45x45#"
-  }, 
-  :default_url => "/images/missing_profile.jpeg",
-  :path => ":class/photos/:id/:style.:extension"
+  PAPERCLIP_OPTIONS = {:styles => {
+      :large => "600x600>",
+      :medium => "300x300#",
+      :small => "45x45#"
+    }, 
+    :default_url => "/images/missing_profile.jpeg"}
+
+  if Rails.env.production?
+    has_attached_file(:profile_photo, {:path => 
+      ":class/photos/:id/:style.:extension"}.merge(PAPERCLIP_OPTIONS))
+  else
+    has_attached_file(:profile_photo, PAPERCLIP_OPTIONS) 
+  end
 
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
