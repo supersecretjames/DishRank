@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
       user.email = auth.info.email
       user.access_token = auth.credentials.token
       user.password = Devise.friendly_token[0, 20]
+      user.save!
     end
   end
 

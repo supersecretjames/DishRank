@@ -3,7 +3,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 		user = User.from_omniauth(request.env["omniauth.auth"])
 
 		if user.persisted?
-			flash.notice = "You are now signed in! Token: #{user.access_token}"
+			flash.notice = "You are now signed in!"
 			sign_in_and_redirect user
 		else
 			session["devise.user_attributes"] = user.attributes

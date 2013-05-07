@@ -39,6 +39,8 @@ gem 'omniauth-facebook'
 gem "koala", "~> 1.6.0"
 gem 'kaminari'
 gem "letter_opener", "~> 1.1.0"
+gem 'delayed_job_active_record'
+gem "foreman", "~> 0.63.0"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
