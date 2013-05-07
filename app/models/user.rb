@@ -63,6 +63,7 @@ class User < ActiveRecord::Base
   end
 
   def post_on_facebook(review)
+    p "INSIDE"
     @graph = Koala::Facebook::API.new(self.access_token)
     @graph.put_wall_post("A tasty dish appears!", {
             "name" => "#{review.dish.restaurant.name}: #{review.dish.name}",
