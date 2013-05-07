@@ -71,7 +71,6 @@ class User < ActiveRecord::Base
             "caption" => "www.google.com",
             "description" => "#{review.body}",
             "picture" => "http://dishrankpro.s3.amazonaws.com/reviews/photos/30/medium.jpg"
-            review.photo.url(:medium).split('?')[0]
           })
   end
 
