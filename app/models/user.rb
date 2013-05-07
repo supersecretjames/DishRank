@@ -25,15 +25,18 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_create do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.name = auth.info.name
-      user.email = auth.info.email
-      user.access_token = auth.credentials.token
-      user.password = Devise.friendly_token[0, 20]
-      user.save!
-    end
+    user = User.where("email = ?", auth.info.email).first_or_initialize 
+    p "USER HERE #{user.attributes}"
+
+    user.provider = auth.provider
+    user.uid = auth.uid
+    user.name ||= auth.info.name
+    user.email = auth.info.email if user.email.empty?
+    user.access_token = auth.credentials.token
+    user.encrypted_password = 
+      Devise.friendly_token[0, 20] if user.encrypted_password.empty? 
+    user.save!
+    user
   end
 
   def self.new_with_session(params, session)
@@ -59,9 +62,20 @@ class User < ActiveRecord::Base
     end
   end
 
+  def post_on_facebook(review)
+    @graph = Koala::Facebook::API.new(self.access_token)
+    @graph.put_wall_post("A tasty dish appears!", {
+            "name" => "#{review.dish.restaurant.name}: #{review.dish.name}",
+            "link" => "http://www.google.com/",
+            "caption" => "www.google.com",
+            "description" => "#{review.body}",
+            "picture" => "#{review.photo.url(:medium)[/[^?]+/]}"
+          })
+  end
+
   def facebook_friends
-    graph = Koala::Facebook::API.new(self.access_token)
-    graph.get_object("me")
-    graph.get_connected("me", "friends")
+    @graph = Koala::Facebook::API.new(self.access_token)
+    @graph.get_object("me")
+    @graph.get_connections("me", "friends")
   end
 end

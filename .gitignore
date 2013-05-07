@@ -17,5 +17,6 @@
 
 /config/initializers/env.rb
 /config/initializers/all_env.rb
+/config/initializers/a_env.rb
 /users/photos
 

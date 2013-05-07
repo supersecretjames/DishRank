@@ -7,4 +7,5 @@ class ApplicationController < ActionController::Base
   		redirect_to dish_types_url
   	end
   end
+
 end

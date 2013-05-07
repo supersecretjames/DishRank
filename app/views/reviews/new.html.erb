@@ -19,15 +19,22 @@
 			<input class="star" type="radio" name="review[score]" value="3"/>
 			<input class="star" type="radio" name="review[score]" value="4"/>
 			<input class="star" type="radio" name="review[score]" value="5"/>
-			<%= ("&nbsp" * 10).html_safe %> 
+			<%= ("&nbsp" * 8).html_safe %> 
 			<i>Roll over stars. Then click to rate.</i>
 			<p><p>
 
-			<%= f.text_field :body %><br>
+			<%= f.text_field :body %><%= ("&nbsp" * 8).html_safe %> 
+			<i>Optional text description.</i>
+			<br>
 
 
-			<h4>Upload Photo</h4>
+			<h4>Upload Photo (Required)</h4>
 			<%= f.file_field :photo %><br>
+
+			<% if current_user.access_token %>
+				Share review on Facebook: <%= check_box_tag "facebook" %><p><p>
+			<% end %>
+
 			<%= f.submit %>
 		<% end %>
 	</div>
