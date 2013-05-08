@@ -20,15 +20,10 @@ class ReviewsController < ApplicationController
 		@review.user_id = current_user.id
 		@review.dish_id = params[:dish_id]
 
-		if @review.save
-			if Rails.env.production?
-				current_user.delay.post_on_facebook(@review) if params[:facebook] == 1
-			else
-				current_user.post_on_facebook(@review) if params[:facebook] == 1
-			end
-			
-			flash[:success] = "Review Saved!"
 
+		if @review.save
+			flash[:success] = "Review Saved!"
+			current_user.post_on_facebook(@review) if params[:facebook] == "1"
 			redirect_to [@review.dish.restaurant, @review.dish]
 		else
 			render :new
