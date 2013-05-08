@@ -63,14 +63,13 @@ class User < ActiveRecord::Base
   end
 
   def post_on_facebook(review)
-    p "INSIDE"
     @graph = Koala::Facebook::API.new(self.access_token)
     @graph.put_wall_post("A tasty dish appears!", {
             "name" => "#{review.dish.restaurant.name}: #{review.dish.name}",
-            "link" => "http://www.google.com/",
-            "caption" => "www.google.com",
+            "link" => "#{review.url}",
+            "caption" => "www.dishrank.com",
             "description" => "#{review.body}",
-            "picture" => "http://dishrankpro.s3.amazonaws.com/reviews/photos/30/medium.jpg"
+            "picture" => "#{review.photo.url(:medium, timestamp: false)}"
           })
   end
 

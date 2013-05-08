@@ -24,4 +24,10 @@ class Review < ActiveRecord::Base
   def self.review_count(dish)
     Review.where("dish_id = ?", dish.id).count
   end
+
+  def url
+    html = "http://gentle-journey-4513.herokuapp.com/"
+    html += "restaurants/#{self.dish.restaurant_id}/dishes/#{self.dish_id}"
+    html
+  end
 end
