@@ -2,7 +2,9 @@
 	<div id='head'>
 		<h1><%= @dish.restaurant.name %></h1>
 	</div>
-	<%= render :partial => 'dishnavbar' %>
+	<div id='navbar'>
+		<%= render :partial => 'dishnavbar' %>
+	</div>
 	<div id='reviews'>
 		<% if @reviews.empty? %> 
 			<h3>No Reviews Yet</h3>

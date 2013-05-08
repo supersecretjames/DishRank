@@ -11,8 +11,6 @@ class ReviewsController < ApplicationController
 	def new
 		@dish = Dish.find(params[:dish_id])
 		@review = @dish.reviews.build
-
-		render :new
 	end
 
 	def create

@@ -18,14 +18,10 @@ class DishesController < ApplicationController
 		end
 		@restaurants = 
 			Kaminari.paginate_array(@restaurants).page(params[:page]).per(10)
-
-		render :index 
 	end
 
 	def new
 		@dish = Dish.new
-
-		render :new
 	end
 
 	def create 
@@ -47,8 +43,21 @@ class DishesController < ApplicationController
 		@reviews = Review.where("dish_id = ?", @dish.id).order("created_at DESC")
 		@reviews = 
 			Kaminari.paginate_array(@reviews).page(params[:page]).per(10)
+	end
 
-		render :show
+	def edit
+		@dish = Dish.find(params[:id])
+	end
+
+	def update
+		@dish = Dish.find(params[:id])
+
+		if @dish.update_attributes(params[:dish])
+			flash[:success] = "The dish has been updated."
+			redirect_to [@dish.restaurant, @dish]
+		else
+			render :edit
+		end
 	end
 
 end
