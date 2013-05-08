@@ -1,0 +1,18 @@
+<div id='navbar'>
+		<b><%= @dish.name %></b>
+		<br> 
+		(<i>Dish Type: <%= link_to @dish.dish_type.name, dish_type_path(@dish.dish_type) %></i>)
+		<br>
+
+		Price: $<%= @dish.price %><br>
+		<%= @dish.description %>
+		<p>
+
+		<%= average_stars_for(@dish) %>
+		Avg. Score: <%= @dish.average_rating %><br>
+		(<%= @dish.total_review_count %> total reviews)
+		<p><p>
+
+		<%= link_to "Write a review.", new_restaurant_dish_review_path(params[:restaurant_id], @dish) %>
+		<br>
+</div>

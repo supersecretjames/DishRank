@@ -1,0 +1,14 @@
+<div class="container">
+	<div id='head'>
+		<h1><%= @review.dish.restaurant.name %></h1>
+	</div>
+	<%#= render :partial => 'dishes/dishnavbar' %>
+	<div id='reviews'>
+		<%= image_tag @review.photo.url(:medium), class: 'thin_border' %><p><p>
+		<%= image_tag @review.user.profile_photo.url(:small), class: 'thin_border' %>
+		<%= link_to @review.user.name, user_path(@review.user) %> says:
+		<%= @review.body unless !@review.body %>
+		<%= stars_for(@review) %>
+		<p>
+	</div>
+</div>

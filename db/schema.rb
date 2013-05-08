@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130507002715) do
+ActiveRecord::Schema.define(:version => 20130508154302) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20130507002715) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "body"
+    t.boolean  "facebook"
   end
 
   add_index "reviews", ["dish_id"], :name => "index_reviews_on_dish_id"

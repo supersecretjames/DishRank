@@ -63,20 +63,22 @@ class User < ActiveRecord::Base
   end
 
   def post_on_facebook(review)
-    restaurant_name = review.dish.restaurant.name
-    dish_name = review.dish.name
-    review_url = review.url
-    review_body = review.body
-    picture_url = review.photo.url(:medium, timestamp: false)
+    if Rails.env.production?
+      pic = review.photo.url(:medium, timestamp: false)
+    else
+      pic = "http://dishrankpro.s3.amazonaws.com/reviews/photos/37/medium.jpg"
+    end
 
     @graph = Koala::Facebook::API.new(self.access_token)
     @graph.put_wall_post("A tasty dish appears!", {
-            "name" => "#{restaurant_name}: #{dish_name}",
-            "link" => "#{review_url}",
+            "name" => "#{review.dish.restaurant.name}: #{review.dish.name}",
+            "link" => "#{review.url}",
             "caption" => "www.dishrank.com",
-            "description" => "#{review_body}",
-            "picture" => "#{picture_url}"
+            "description" => "#{review.body}",
+            "picture" => "#{pic}"
           })
+    review.facebook = false
+    review.save
   end
 
   def facebook_friends

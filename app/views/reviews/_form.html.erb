@@ -1,0 +1,40 @@
+<div class="container">
+	<h1><%= @dish.restaurant.name %></h1>
+	<div id='review'>
+		<h3>Review: <%= @dish.name %>, $<%= @dish.price %></h3>
+			<div style='float: left; text-align: left'><%= link_to @dish.restaurant.name, restaurant_path(@dish.restaurant) %></div>
+	
+			<div style='float: right; text-align: right'><%= @dish.restaurant.street %>, 
+			<%= @dish.restaurant.city %>,
+			<%= @dish.restaurant.state %></div>
+			<p>
+			<div style="clear: both;"></div>
+			<hr>
+
+		<%= form_for([:restaurant, :dish, @review]) do |f| %>
+			<h4>Review</h4>
+			<input class="star required" type="radio" name="review[score]" value="1"/>
+			<input class="star" type="radio" name="review[score]" value="2"/>
+			<input class="star" type="radio" name="review[score]" value="3"/>
+			<input class="star" type="radio" name="review[score]" value="4"/>
+			<input class="star" type="radio" name="review[score]" value="5"/>
+			<%= ("&nbsp" * 8).html_safe %> 
+			<i>Roll over stars. Then click to rate.</i>
+			<p><p>
+
+			<%= f.text_field :body %><%= ("&nbsp" * 8).html_safe %> 
+			<i>Optional text description.</i>
+			<br>
+
+
+			<h4>Upload Photo (Required)</h4>
+			<%= f.file_field :photo %><br>
+
+			<% if current_user.access_token %>
+				Share review on Facebook: <%= f.check_box :facebook %><p><p>
+			<% end %>
+
+			<%= f.submit %>
+		<% end %>
+	</div>
+</div>

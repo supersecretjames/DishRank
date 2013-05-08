@@ -23,7 +23,9 @@ class ReviewsController < ApplicationController
 
 		if @review.save
 			flash[:success] = "Review Saved!"
-			current_user.post_on_facebook(@review) if params[:facebook] == "1"
+			if @review.facebook = true
+				current_user.post_on_facebook(@review) 
+			end
 			redirect_to [@review.dish.restaurant, @review.dish]
 		else
 			render :new
@@ -31,12 +33,23 @@ class ReviewsController < ApplicationController
 	end
 
 	def edit
+		@review = Review.find(params[:id])
+		@dish = Dish.find(params[:dish_id])
 	end
 
 	def update
+		@review = Review.find(params[:id])
+
+		if @review.update_attributes(params[:review])
+			flash[:success] = "Your review has been updated."
+			redirect_to [@review.dish.restaurant, @review.dish]
+		else
+			render :edit
+		end
 	end
 
 	def show
+		@review = Review.find(params[:id])
 	end
 
 	def destroy
