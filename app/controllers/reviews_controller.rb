@@ -21,9 +21,9 @@ class ReviewsController < ApplicationController
 		@review.dish_id = params[:dish_id]
 
 		if @review.save
-			current_user.post_on_facebook(@review) if params[:facebook] == 1
+			current_user.post_on_facebook(@review)
 			flash[:success] = "Review Saved!"
-			
+
 			redirect_to [@review.dish.restaurant, @review.dish]
 		else
 			render :new
